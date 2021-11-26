@@ -1,4 +1,6 @@
-# DISNEY CLONE
+![](https://midu.dev/images/tags/react.png)
+
+# DISNEY CLONE - REACTJS [![yarn version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react)
 
 Disney clone is a project only for development practices and above all for fun D.
 
@@ -11,6 +13,7 @@ yarn install
 ```
 
 ## Dependencies
+
 `react, styled-components, react-router-dom`
 
 ## Usage
@@ -21,11 +24,13 @@ yarn start
 ```
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 ## Project status
+
 In process, but I am open to receive contributions :D.
 
 ## License
