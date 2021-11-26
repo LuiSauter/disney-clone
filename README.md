@@ -33,5 +33,5 @@ Please make sure to update tests as appropriate.
 
 In process, but I am open to receive contributions :D.
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+<!-- ## License
+[MIT](https://choosealicense.com/licenses/mit/) -->
