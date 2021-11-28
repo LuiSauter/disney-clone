@@ -19,6 +19,13 @@ export const Nav = styled.nav`
     display: flex;
     flex-direction: row;
   }
+  button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+  }
   .btn-signin p {
     display: flex;
     align-items: center;
@@ -28,8 +35,8 @@ export const Nav = styled.nav`
     border-radius: 4px;
     font-size: 1.3rem;
     margin: 0;
-    /* height: 30px; */
     width: 120px;
+    cursor: pointer;
     &:hover {
       background-color: #0483ee;
     }

@@ -53,7 +53,7 @@ export const NavMenu = styled.div`
     }
   }
   @media screen and (max-width: 768px) {
-    /* display: none; */
+    display: none;
     span {
       display: none;
     }
