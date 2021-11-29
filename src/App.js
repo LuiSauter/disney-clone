@@ -1,13 +1,18 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Disney from './pages/';
+import { FooterEnd } from "./components/Footer/FooterEnd";
+import Header from "./components/Header/Header";
+import Home from "./pages/Home";
+import PresentationPage from './pages/PresentationPage';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Header />
         <Routes>
-          <Route path="/" element={<Disney />} />
+          <Route path="/" element={<PresentationPage />} />
+          <Route path="/home" element={<Home />} />
           <Route
             exact
             path="*"
@@ -18,6 +23,7 @@ function App() {
             }
           />
         </Routes>
+        <FooterEnd />
       </BrowserRouter>
     </div>
   );
