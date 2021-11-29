@@ -1,7 +1,7 @@
 import {initializeApp, getApps} from "firebase/app";
 import {getFirestore} from "firebase/firestore";
-import {getStorage} from "firebase/storage";
-import {getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+// import {getStorage} from "firebase/storage";
+import {getAuth,signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyDaw1TprUNC6wPpeiU5lasE05sGPoOJiAU",
   authDomain: "disneypls.firebaseapp.com",
@@ -21,9 +21,28 @@ export const loginWithGoogle = async () => {
   return await signInWithPopup(auth, googleProvider)
 }
 
-// const mapUserFromFirebaseAuthToUser = (user) => {
-//   if (user) {
-//     // const { displayName,  } = user
-//   }
-// }
+export const signOutWithGoogle = async () => {
+  const auth = getAuth();
+  return signOut(auth)
+}
 
+const mapUserFromFirebaseAuthToUser = (user) => {
+  if (user) {
+    const { displayName, email, photoURL, uid } = user
+    return {
+      photo: photoURL,
+      name: displayName,
+      email: email,
+      uid
+    };
+  } else return null
+}
+
+export const onAuthStateChange = (onChange) => {
+  return getAuth().onAuthStateChanged(user => {
+    const normalizedUser = user
+      ? mapUserFromFirebaseAuthToUser(user)
+      : null
+    onChange(normalizedUser);
+  })
+}
