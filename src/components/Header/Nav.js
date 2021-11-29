@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DropDown } from "../DropDown/DropDown";
 
 export const Nav = styled.nav`
   position: fixed;
@@ -45,11 +46,30 @@ export const Nav = styled.nav`
     width: 70px;
     max-height: 52px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    position: relative;
+    user-select: none;
     img {
       left: 0;
       width: 100%;
       height: auto;
+      object-fit: cover;
+    }
+    .img-user {
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+    }
+    &:hover {
+      .img-user {
+        opacity: .9;
+        cursor: pointer;
+      }
+      ${DropDown} {
+        opacity: 1;
+        transition: opacity .5s;
+        transform: translateY(0%);
+      }
     }
   }
   .scroll-container {
@@ -59,7 +79,9 @@ export const Nav = styled.nav`
     position: relative;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    &::-webkit-scrollbar { display: none;}
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   @media screen and (min-width: 768px) {
     height: 70px;

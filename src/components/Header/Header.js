@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {loginWithGoogle} from '../../client/firebase'
+import { loginWithGoogle, signOutWithGoogle } from "../../client/firebase";
 import {
   selectUserName,
   selectUserPhoto,
+  setSignOutState,
   setUserLoginDetails
 } from "../../features/user/userSlice";
+import { useUser } from "../../hooks/useUser";
 
 import { NavMenu } from "./NavMenu.js";
 import { Nav } from "./Nav.js";
@@ -17,8 +19,40 @@ import { RiMovie2Fill } from 'react-icons/ri'
 import { AiFillHome } from 'react-icons/ai'
 import { BiSearch } from "react-icons/bi";
 import { ImTv } from 'react-icons/im'
+import { DropDown } from "../DropDown/DropDown";
 
 export default function Header() {
+  const history = useNavigate();
+  const userName = useSelector(selectUserName);
+  const userPhoto = useSelector(selectUserPhoto);
+  const dispatch = useDispatch();
+  const { userLogget } = useUser();
+
+  useEffect(() => {
+    if (userLogget) {
+      dispatch(
+        setUserLoginDetails({
+          name: userLogget.name,
+          email: userLogget.email,
+          photo: userLogget.photo,
+          uid: userLogget.uid,
+        })
+      );
+      return history("../home", { replace: true });
+    } else {
+      return history("../", { replace: true });
+    }
+  }, [dispatch, history, userLogget]);
+
+  const handleAuth = () => {
+    if (!userName) {
+      loginWithGoogle().catch((err) => console.error(err));
+    } else if (userName) {
+      signOutWithGoogle()
+        .then(() => dispatch(setSignOutState()))
+        .catch((err) => console.error(err));
+    }
+  };
   useEffect(() => {
     window.onload = () => {
       document.onwheel = customScrollFunction;
@@ -30,42 +64,19 @@ export default function Header() {
         if (deltaYSign === -1) {
           document.getElementById("scrl1").scrollBy({
             top: 0,
-            left: -169,
+            left: -39,
             behavior: "auto",
           });
         } else if (deltaYSign === 1) {
           document.getElementById("scrl1").scrollBy({
             top: 0,
-            left: 169,
+            left: 39,
             behavior: "auto",
           });
         }
       }
     };
   }, []);
-  const history = useNavigate();
-  const userName = useSelector(selectUserName)
-  const userPhoto = useSelector(selectUserPhoto)
-  const dispatch = useDispatch();
-
-  const handleAuth = () => {
-    loginWithGoogle()
-    .then(result => {
-      const { displayName, email, photoURL } = result.user;
-      setUser({ displayName, email, photoURL });
-    })
-    .catch(err => console.error(err))
-  }
-
-  const setUser = ({ displayName, email, photoURL }) => {
-    dispatch(
-      setUserLoginDetails({
-        name: displayName,
-        email: email,
-        photo: photoURL,
-      })
-    );
-  };
 
   return (
     <Nav>
@@ -111,8 +122,18 @@ export default function Header() {
                 <span>SERIES</span>
               </Link>
             </NavMenu>
-            <img src={userPhoto} alt={userName} />
           </div>
+          <picture>
+            <img
+              onClick={handleAuth}
+              src={userPhoto}
+              alt={userName}
+              className="img-user"
+            />
+            <DropDown>
+              <span>Sign Out</span>
+            </DropDown>
+          </picture>
         </>
       )}
     </Nav>

@@ -5,7 +5,7 @@ import Devices from "./Devices";
 
 import { Container, CTA, CTALogoOne, Content, Description, Button, FooterContent, CTAGrid } from "./style"
 
-function Login() {
+function Presentation() {
   return (
     <Container>
       <figure />
@@ -59,4 +59,4 @@ function Login() {
   );
 }
 
-export default Login
+export default Presentation;
