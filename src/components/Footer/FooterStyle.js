@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const FooterStyle = styled.div`
-  position: absolute;
   bottom: 0;
   text-align: center;
   width: 100%;
@@ -15,8 +14,8 @@ export const FooterStyle = styled.div`
     width: 100%;
     font-size: 1.3rem;
     svg {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
     }
     .love {
       transition: transform 0.5s;
@@ -29,7 +28,7 @@ export const FooterStyle = styled.div`
       }
     }
     & p {
-      font-size: 1.2rem;
+      font-size: .9rem;
       font-weight: 400;
       margin: 0 10px;
     }
