@@ -14,13 +14,17 @@ body {
   font-family: Avenir-Roman, sans-serif;
   margin: 0;
   padding: 0;
-  margin-bottom: 80px;
+  /* margin-bottom: 80px; */
   overflow-x: hidden;
 }
 
 a {
   color: #f9f9f9;
   text-decoration: none;
+}
+
+#root, .App {
+  min-height: 100vh;
 }
 
 ul {

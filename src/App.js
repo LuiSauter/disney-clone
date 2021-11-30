@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { FooterEnd } from "./components/Footer/FooterEnd";
 import Header from "./components/Header/Header";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import PresentationPage from './pages/PresentationPage';
 
 function App() {
@@ -12,7 +11,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<PresentationPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<HomePage />} />
           <Route
             exact
             path="*"
@@ -23,7 +22,6 @@ function App() {
             }
           />
         </Routes>
-        <FooterEnd />
       </BrowserRouter>
     </div>
   );
