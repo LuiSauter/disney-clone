@@ -3,7 +3,7 @@ import { DownArrow } from "../../assets/icons/DownArrow";
 import { BtnSignup } from "../BtnSignup/BtnSignup";
 import Devices from "./Devices";
 
-import { Container, CTA, CTALogoOne, Content, Description, Button, FooterContent, CTAGrid } from "./style"
+import { Container, CTA, CTALogoOne, Content, Description, Button, FooterContent, CTAGrid } from "../style"
 
 function Presentation() {
   return (
