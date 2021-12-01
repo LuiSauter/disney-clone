@@ -4,10 +4,10 @@ import { useUser } from "../hooks/useUser";
 import { FooterEnd } from '../components/Footer/FooterEnd'
 
 export default function PresentationPage() {
-  const { userLogget } = useUser();
+  const { isLogged } = useUser();
   return (
     <>
-      {userLogget === null ? (
+      {!isLogged ? (
         <>
           <Presentation />
           <FooterEnd />
