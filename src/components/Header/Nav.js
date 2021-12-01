@@ -42,13 +42,15 @@ export const Nav = styled.nav`
       background-color: #0483ee;
     }
   }
-  picture {
+  figure {
     width: 70px;
-    max-height: 52px;
+    max-height: 50px;
     display: flex;
     justify-content: center;
     position: relative;
     user-select: none;
+    margin: 0;
+    padding: 0;
     img {
       left: 0;
       width: 100%;
@@ -57,17 +59,18 @@ export const Nav = styled.nav`
     }
     .img-user {
       border-radius: 50%;
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
+      margin: 0;
     }
     &:hover {
       .img-user {
-        opacity: .9;
+        opacity: 0.9;
         cursor: pointer;
       }
       ${DropDown} {
         opacity: 1;
-        transition: opacity .5s;
+        transition: opacity 0.5s;
         transform: translateY(0%);
       }
     }
