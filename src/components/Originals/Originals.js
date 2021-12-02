@@ -1,43 +1,21 @@
 import { Link } from "react-router-dom";
+import { useMovies } from "../../hooks/useMovies";
 import { Cards } from "../Cards";
 
 export default function Originals() {
+  const { original } = useMovies();
   return (
     <Cards>
       <h4>Originals</h4>
       <div>
-        <article>
-          <Link to="/">
-            <img
-              src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg"
-              alt=""
-            />
-          </Link>
-        </article>
-        <article>
-          <Link to="/">
-            <img
-              src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg"
-              alt=""
-            />
-          </Link>
-        </article>
-        <article>
-          <Link to="/">
-            <img
-              src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg"
-              alt=""
-            />
-          </Link>
-        </article>
-        <article>
-          <Link to="/">
-            <img
-              src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg"
-              alt=""
-            />
-          </Link>
-        </article>
+        {original &&
+          original.map((movie) => (
+            <article key={movie.id}>
+              <Link to={`/detail/${movie.id}`}>
+                <img src={movie.cardImg} alt={movie.title} />
+              </Link>
+            </article>
+          ))}
       </div>
     </Cards>
   );
