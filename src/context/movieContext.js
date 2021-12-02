@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -19,6 +19,7 @@ const moviesCtrl = {
 export const MovieContextProvider = ({children}) => {
   const [moviesState, setMoviesState] = useState(null);
 
+  const userName = useSelector(selectUserName)
   const recomend = useSelector(selectRecommended);
   const newDisney = useSelector(selectNewDisney);
   const original = useSelector(selectOriginal);
@@ -63,21 +64,27 @@ export const MovieContextProvider = ({children}) => {
     }
   }
 
+  const dispatching = useCallback(() => {
+    dispatch(
+      setMovies({
+        recommend: moviesCtrl.recommends,
+        newDisney: moviesCtrl.newDisneys,
+        original: moviesCtrl.originals,
+        trending: moviesCtrl.trending,
+      })
+    );
+  }, [dispatch]);
+
   useEffect(() => {
+    let unsubscribe;
     const movies = dataMovies.movies;
     movies.map((movie) => {
       return switching(movie);
     });
-  }, []);
+    unsubscribe = dispatching();
+    return () => unsubscribe && unsubscribe();
+  }, [dispatching]);
 
-  dispatch(
-    setMovies({
-      recommend: moviesCtrl.recommends,
-      newDisney: moviesCtrl.newDisneys,
-      original: moviesCtrl.originals,
-      trending: moviesCtrl.trending,
-    })
-  );
   useEffect(() => {
     setMoviesState({
       recommend: recomend,
