@@ -13,8 +13,7 @@ import { ImTv } from "react-icons/im";
 import { DropDown } from "../DropDown/DropDown";
 
 export default function Header() {
-  const { isLogged, handleAuth, userPhoto, userName } = useUser();
-  console.log(isLogged);
+  const { isLogged, handleAuth, userPhoto, userName, userLogget } = useUser();
   useEffect(() => {
     window.onload = () => {
       document.onwheel = customScrollFunction;
@@ -42,13 +41,13 @@ export default function Header() {
   return (
     <Nav>
       <header>
-        <Link to="/home">
+        <Link to="/">
           <figure>
             <img src="/images/logo-disney.svg" alt="Disney plus" />
           </figure>
         </Link>
       </header>
-      {!isLogged ? (
+      {userLogget === null ? (
         <div className="btn-signin">
           <button onClick={handleAuth}>
             <p>LOG IN</p>
@@ -62,23 +61,23 @@ export default function Header() {
                 <AiFillHome />
                 <span>HOME</span>
               </Link>
-              <Link to="/home">
+              <Link to="#">
                 <BiSearch />
                 <span>SEARCH</span>
               </Link>
-              <Link to="/home">
+              <Link to="#">
                 <GoPlus />
                 <span>WATCHLIST</span>
               </Link>
-              <Link to="/home">
+              <Link to="#">
                 <GoStar />
                 <span>ORIGINALS</span>
               </Link>
-              <Link to="/home">
+              <Link to="#">
                 <RiMovie2Fill />
                 <span>MOVIES</span>
               </Link>
-              <Link to="/home">
+              <Link to="#">
                 <ImTv />
                 <span>SERIES</span>
               </Link>
