@@ -22,6 +22,7 @@ const movieSlice = createSlice({
 
 export const { setMovies } = movieSlice.actions;
 
+export const selectAllMovies = (state) => state.movies;
 export const selectRecommended = (state) => state.movies.recommend;
 export const selectNewDisney = (state) => state.movies.newDisney;
 export const selectOriginal = (state) => state.movies.original;
