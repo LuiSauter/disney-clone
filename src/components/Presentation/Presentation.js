@@ -29,7 +29,7 @@ function Presentation() {
       </div>
       <Content id="devices">
         <article>
-          <CTALogoOne src="/images/logo-devices.png" alt="" />
+          <CTALogoOne src="/images/logo-devices.webp" alt="" />
           <div>
             <h2>Watch the way you want</h2>
             <Description>
