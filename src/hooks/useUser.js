@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { onAuthStateChange } from "../client/firebase"
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginWithGoogle, signOutWithGoogle } from "../client/firebase";
@@ -9,25 +8,15 @@ import {
   setSignOutState,
   setUserLoginDetails,
 } from "../features/user/userSlice";
+import { useUserContext } from "../context/userContext";
 
 export const useUser = () => {
-  const [userLogget, setUserLogget] = useState(undefined);
-  const [isLogged, setIsLogged] = useState(true);
+  const { isLogged, userLogget, setIsLogged, setUserLogget } = useUserContext();
 
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
   const dispatch = useDispatch();
   const history = useNavigate();
-
-  useEffect(() => {
-    let unsubscribe;
-    if (!userLogget) {
-      return onAuthStateChange((data) => {
-        return (unsubscribe = setUserLogget(data));
-      });
-    }
-    return () => unsubscribe && unsubscribe();
-  }, [userLogget]);
 
   useEffect(() => {
     if (userLogget) {
@@ -52,11 +41,12 @@ export const useUser = () => {
         .then(() => {
           dispatch(setSignOutState());
           setIsLogged(false);
+          setUserLogget(null);
           history("../");
         })
         .catch((err) => console.error(err));
     }
   };
 
-  return { isLogged, handleAuth, userPhoto, userName };
-}
+  return { isLogged, handleAuth, userPhoto, userName, userLogget };
+};
