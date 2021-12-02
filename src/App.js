@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import PresentationPage from "./pages/PresentationPage";
-import HomePage from "./pages/PublicPage";
+import HomePage from "./pages/HomePage";
 import PrivateRoute from "./routers/PrivateRoutes";
 import PublicRoutes from "./routers/PublicRoutes";
 
@@ -27,15 +27,6 @@ function App() {
               <PrivateRoute>
                 <HomePage />
               </PrivateRoute>
-            }
-          />
-          <Route
-            exact
-            path="*"
-            element={
-              <main>
-                <p>There's nothing here❗</p>
-              </main>
             }
           />
         </Routes>
